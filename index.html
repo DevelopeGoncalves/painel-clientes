@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Painel de Clientes - Victorino Engenharia</title>
+    <style>
+        /* Estilos Gerais */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f0f2f5; 
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        /* Cabeçalho */
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+            width: 100%;
+        }
+        
+        header img {
+            max-width: 200px;
+            height: auto;
+            margin-bottom: 10px;
+        }
+
+        h1 {
+            color: #1a1a1a;
+            font-size: 1.5rem;
+            margin: 0;
+        }
+        
+        p.subtitle {
+            color: #666;
+            font-size: 0.9rem;
+            margin-top: 5px;
+        }
+
+        /* Container dos Cards */
+        .grid-clientes {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+            gap: 15px;
+            width: 100%;
+            max-width: 800px;
+        }
+
+        /* Estilo do Card */
+        .card {
+            background-color: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            padding: 20px 10px;
+            text-align: center;
+            text-decoration: none;
+            color: #333;
+            transition: transform 0.2s, box-shadow 0.2s;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            -webkit-tap-highlight-color: transparent; 
+        }
+
+        .card:hover, .card:active {
+            transform: translateY(-3px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            background-color: #fafafa;
+        }
+
+        /* Logo dentro do card */
+        .card img {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 12px;
+            border: 2px solid #e0e0e0;
+            background-color: #fff;
+        }
+
+        @media (max-width: 340px) {
+            .grid-clientes {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <img src="img/logo.jpg" alt="Victorino Engenharia">
+        <h1>Painel PDV</h1>
+        <p class="subtitle">Acesso rápido aos sistemas dos clientes</p>
+    </header>
+
+    <div class="grid-clientes" id="lista-clientes">
+        </div>
+
+    <script>
+        // === LISTA DE CLIENTES ===
+        const clientes = [
+            {
+                nome: "Bar Do Gigante",
+                link: "https://bardogigante.netlify.app/",
+                logo: "img/logo.jpg" // ALTERADO AQUI TAMBÉM
+            },
+            {
+                nome: "Thiago Santa Tereza",
+                link: "https://restaurante-raiz-santa-tereza.netlify.app/",
+                logo: "img/logo.jpg" // ALTERADO AQUI TAMBÉM
+            },
+            {
+                nome: "Wandersson",
+                link: "https://victorinopdv.netlify.app/",
+                logo: "img/logo.jpg" // ALTERADO AQUI TAMBÉM
+            },
+            {
+                nome: "Farmácia Boa Saúde",
+                link: "https://link-do-pdv-4.com.br",
+                logo: "img/logo.jpg" // ALTERADO AQUI TAMBÉM
+            }
+        ];
+
+        // === CÓDIGO QUE GERA OS CARDS ===
+        const container = document.getElementById('lista-clientes');
+
+        clientes.forEach(cliente => {
+            const card = document.createElement('a');
+            card.href = cliente.link;
+            card.className = 'card';
+            card.target = '_blank';
+
+            card.innerHTML = `
+                <img src="${cliente.logo}" alt="Logo ${cliente.nome}">
+                <h3>${cliente.nome}</h3>
+            `;
+
+            container.appendChild(card);
+        });
+    </script>
+
+</body>
+</html>
